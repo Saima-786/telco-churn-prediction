@@ -1,15 +1,19 @@
-# telco-churn-prediction
-Predicting customer churn using machine learning with Python.
-Telco Customer Churn Prediction
-Project Overview
+# Telco Customer Churn Prediction
+
+## Project Overview
 This project focuses on analyzing the Telco Customer Churn dataset to identify key factors that lead to customer churn. The primary goal is to build and evaluate machine learning models that can predict whether a customer will churn or not. The project involves two main stages: a comprehensive Exploratory Data Analysis (EDA) and the development of predictive models.
 
-Dataset
+---
+
+## Dataset
 The dataset used is the Telco Customer Churn dataset, which contains information about a fictional telco company's customers. It includes customer demographics, account information, and services they have signed up for.
 
-Source: Kaggle - Telco Customer Churn
+**Source:** [Kaggle - Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
 
-Project Structure
+---
+
+## Project Structure
+```text
 telco-churn-prediction/
 │
 ├── WA_Fn-UseC_-Telco-Customer-Churn.csv    # The raw dataset
@@ -17,74 +21,76 @@ telco-churn-prediction/
 ├── churn_by_contract.png                   # Visualization of churn vs. contract type
 ├── tenure_distribution.png                 # Visualization of churn vs. customer tenure
 └── README.md                               # This file
-Installation and Setup
+```
+
+---
+
+## Installation and Setup
+
 To run this project, you need Python 3 and the following libraries. You can install them using pip.
 
-Clone the repository:
-
-Bash
-
-git clone https://github.com/Saima786/telco-churn-prediction.git
+**Clone the repository:**
+```bash
+git clone https://github.com/Saima-786/telco-churn-prediction.git
 cd telco-churn-prediction
+
 Install the required libraries:
 
 Bash
 
 pip install pandas numpy matplotlib seaborn scikit-learn jupyterlab
 Methodology
+```
+# Telco Customer Churn Prediction Project
+
 The project follows a standard data science workflow:
 
-1. Data Cleaning & Exploratory Data Analysis (EDA)
-Data Loading: The dataset was loaded into a pandas DataFrame.
+## 1. Data Cleaning & Exploratory Data Analysis (EDA)
 
-Initial Inspection: Checked for shape, data types, and missing values.
+* **Data Loading:** The dataset (`WA_Fn-UseC_-Telco-Customer-Churn.csv`) was loaded into a pandas DataFrame.
+* **Initial Inspection:** Checked for shape, data types, and missing values.
+* **Data Cleaning:** The `TotalCharges` column was converted from an object to a numeric type. The 11 missing values created during this conversion were filled with the median value.
+* **Visualization & Insights:** Key relationships were visualized to understand the drivers of churn:
+    * Customers with **month-to-month contracts** are significantly more likely to churn.
+    * Newer customers (with **low tenure**) have a higher churn rate.
+    * Customers using **Fiber optic** internet service show a higher churn rate.
 
-Data Cleaning: The TotalCharges column was converted from an object to a numeric type. The 11 missing values created during this conversion were filled with the median value.
+## 2. Model Building & Evaluation
 
-Visualization & Insights: Key relationships were visualized to understand the drivers of churn.
+* **Feature Engineering:** The `customerID` was dropped. Categorical features were one-hot encoded, and numerical features were scaled using `StandardScaler`.
+* **Data Splitting:** The dataset was split into training (80%) and testing (20%) sets.
+* **Model Training:** Two different classification models were trained:
+    * `Logistic Regression`
+    * `Random Forest Classifier`
+* **Evaluation:** The models were evaluated using Accuracy, Precision, Recall, and F1-Score.
 
-Customers with month-to-month contracts are significantly more likely to churn.
+## Results
 
-Newer customers (with low tenure) have a higher churn rate.
-
-Customers using Fiber optic internet service show a higher churn rate.
-
-2. Model Building & Evaluation
-Feature Engineering: The customerID was dropped. Categorical features were one-hot encoded, and numerical features were scaled using StandardScaler.
-
-Data Splitting: The dataset was split into training (80%) and testing (20%) sets.
-
-Model Training: Two different classification models were trained:
-
-Logistic Regression
-
-Random Forest Classifier
-
-Evaluation: The models were evaluated using Accuracy, Precision, Recall, and F1-Score.
-
-Results
 The performance of the two models on the test set is summarized below.
 
-Model Performance
-Model	Accuracy	Precision (Churn)	Recall (Churn)	F1-Score (Churn)
-Logistic Regression	81.6%	0.68	0.58	0.62
-Random Forest	79.1%	0.63	0.49	0.55
+### Model Performance
 
-Export to Sheets
-Key Visualizations
-Churn Rate by Contract Type
+| Model | Accuracy | Precision (Churn) | Recall (Churn) | F1-Score (Churn) |
+| :--- | :--- | :--- | :--- | :--- |
+| Logistic Regression | 81.6% | 0.68 | 0.58 | 0.62 |
+| Random Forest | 79.1% | 0.63 | 0.49 | 0.55 |
 
-Distribution of Customer Tenure
+## Key Visualizations (Images in Repo)
 
-Conclusion
-Both models performed well, but the Logistic Regression model is recommended for this business problem. While its accuracy is only slightly higher, it achieved a significantly better Recall score (0.58) for the churn class. In a churn prediction scenario, correctly identifying customers who are likely to churn (high recall) is often more important than being precise, as it allows the company to take proactive retention measures.
+* [Churn Rate by Contract Type](churn_by_contract.png)
+* [Distribution of Customer Tenure](tenure_distribution.png)
 
-How to Run the Code
-Ensure all the required libraries are installed.
+## Conclusion
 
-Launch Jupyter Notebook or JupyterLab:
+Both models performed well, but the **Logistic Regression** model is recommended for this business problem. While its accuracy is only slightly higher, it achieved a significantly better **Recall** score (0.58) for the churn class. In a churn prediction scenario, correctly identifying customers who are likely to churn (high recall) is often more important than being precise, as it allows the company to take proactive retention measures.
 
-Bash
+## How to Run the Code
 
-jupyter lab
-Open the Telco_Churn_Analysis.ipynb file and run the cells sequentially.
+1.  Ensure all the required libraries are installed.
+2.  Launch Jupyter Notebook or JupyterLab:
+
+    ```bash
+    jupyter lab
+    ```
+
+3.  Open the `Telco_Churn_Analysis.ipynb` file and run the cells sequentially.
